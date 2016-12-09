@@ -1,4 +1,4 @@
-class TopicController < ApplicationController
+class TopicsController < ApplicationController
 	def create
   		@topic = Topic.new(params[:topic])
  		if @topic.save

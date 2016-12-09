@@ -1,2 +1,2 @@
-class ForumController < ApplicationController
+class ForumsController < ApplicationController
 end
