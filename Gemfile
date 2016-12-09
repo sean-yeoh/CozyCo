@@ -45,3 +45,5 @@ group :development do
   gem 'spring'
 end
 
+# for user authentication
+gem 'clearance'
