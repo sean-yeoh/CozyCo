@@ -46,6 +46,8 @@ group :development do
   gem 'spring'
 end
 
+# ADD NEW GEM HERE
+
 # for user authentication
 gem 'clearance'
 
