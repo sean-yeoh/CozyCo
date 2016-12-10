@@ -1,18 +1,51 @@
 class TopicsController < ApplicationController
+	before_action :find_topic, only: [:show, :edit, :update, :destroy]
+
+	def index
+		@topics = Topic.all.order("created_at DESC")
+	end
+
+	def show
+	end
+
+	def new
+		@topic = current_user.topics.build
+	end
+
 	def create
-  		@topic = Topic.new(params[:topic])
- 		if @topic.save
-    		@topic = Topic.new(:name => params[:topic][:name], :last_poster_id => current_user.id, :last_post_at => Time.now, :forum_id => params[:topic][:forum_id])
- 
-	    	if @post.save
-		      flash[:notice] = "Successfully created topic."
-		      redirect_to "/forums/#{@topic.forum_id}"
-		    else
-		      redirect :action => 'new'
-		    end
+		@topic = current_user.topics.build(topic_params)
+
+		if @topic.save
+			redirect_to @topic
 		else
-		 render :action => 'new'
+			render 'new'
 		end
+	end
+
+	def edit
+	end
+
+	def update
+		if @topic.update(topic_params)
+			redirect_to @topic
+		else
+			render 'edit'
+		end
+	end
+
+	def destroy
+		@topic.destroy
+		redirect_to root_path
+	end
+
+	private
+
+	def find_topic
+		@topic = Topic.find(params[:id])
+	end
+
+	def topic_params
+		params.require(:topic).permit(:title, :content)
 	end
 end
 
