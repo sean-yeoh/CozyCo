@@ -1,0 +1,23 @@
+<div id="topic_content">
+  <h1>
+    <%= @topic.title %>
+  </h1>
+  <p>
+    <%= @topic.content %>
+  </p>
+  <div id="comments">
+    <h2>
+      <%= @topic.comments.count %>
+      Comments
+    </h2>
+    <%= render @topic.comments %>
+    <h3>Reply to thread</h3>
+    <%= render "comments/form" %>
+  </div>
+  <br/>
+  <hr/>
+  <br/>
+  <%= link_to "Edit", edit_topic_path(@topic), class: "button" %>
+  <%= link_to "Delete", topic_path(@topic), method: :delete, data: { confirm: "Are you sure you want to do this?" }, class: "button" %>
+</div>
+topic

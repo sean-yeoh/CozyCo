@@ -1,5 +1,9 @@
 class User < ActiveRecord::Base
   include Clearance::User
+
+  has_many :posts
+  has_many :comments
+
   # require 'mailboxer'
   # include Mailboxer::Models::Messageable
   extend Mailboxer::Models::Messageable::ActiveRecordExtension
