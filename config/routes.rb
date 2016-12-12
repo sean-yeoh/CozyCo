@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
   resources :notices
 
+  resources :events 
+
 
   # Example resource route within a namespace:
   #   namespace :admin do
