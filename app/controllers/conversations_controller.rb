@@ -7,9 +7,33 @@ class ConversationsController < ApplicationController
   def create
     recipients = User.where(id: conversation_params[:recipients])
     conversation = current_user.send_message(recipients, conversation_params[:body], conversation_params[:subject]).conversation
-    flash[:success] = "Your message was successfully sent!"
-    redirect_to conversation_path(conversation)
+
+    if conversation
+      flash[:notice] = "Your message was successfully sent!"
+      redirect_to conversation_path(conversation)
+    else
+      flash[:alert] = "Your message can't be sent"
+      render 'new'
+    end
   end
+
+  def new_private_message
+    @chosen_recipient = User.find(params[:id])
+    render 'conversations/new_private_message'
+  end
+
+  # def create_private_message
+  #   recipient = User.find(params[:id])
+  #   conversation = current_user.send_message(recipient, conversation_params[:body], conversation_params[:subject]).conversation
+
+  #   if conversation
+  #     flash[:notice] = "Your message was successfully sent!"
+  #     redirect_to conversation_path(conversation)
+  #   else
+  #     flash[:alert] = "Your message can't be sent"
+  #     render 'new'
+  #   end
+  # end
 
   def show
     @receipts = conversation.receipts_for(current_user)
