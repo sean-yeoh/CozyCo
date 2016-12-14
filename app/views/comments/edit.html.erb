@@ -1,5 +1,5 @@
 <h1>Edit Reply</h1>
-<%= simple_form_for([@topic, @comment]) do |f| %>
-  <%= f.input :comment %>
+<%= form_for([@topic, @comment]) do |f| %>
+  <%= f.text_field :comment %>
   <%= f.submit %>
 <% end %>
