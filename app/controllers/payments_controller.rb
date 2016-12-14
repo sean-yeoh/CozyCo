@@ -2,9 +2,7 @@ class PaymentsController < ApplicationController
 	  protect_from_forgery with: :null_session
 
   def payment_method
-  	if current_user.credits.empty?
-  		Credit.create(user_id: current_user.id, amount: 0, cents: 0, escrow_amount: 0, escrow_cents: 0)
-  	end
+
   end
 
   def decision
