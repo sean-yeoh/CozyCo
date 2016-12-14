@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   include Clearance::User
 
-  has_many :posts
+  has_many :topics
   has_many :comments
 
   # require 'mailboxer'

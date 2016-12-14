@@ -3,17 +3,13 @@ Rails.application.routes.draw do
 
   get 'listings/index'
 
-  get 'events/index'
-
-  get 'notices/index'
-
   get 'welcome/index'
 
   root 'welcome#index'
 
   resources :notices
 
-  resources :events 
+  resources :events
 
 
   # Example resource route within a namespace:

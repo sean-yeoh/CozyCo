@@ -11,6 +11,13 @@
       <%= link_to "CozyCo", root_path, class: "navbar-brand" %>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
+      <% if signed_in? %>
+        <ul class="nav navbar-nav">
+          <li><%= link_to "Notices", notices_path %></li>
+          <li><%= link_to "Events", events_path %></li>
+          <li><%= link_to "Forum", topics_path %></li>
+        </ul>
+      <% end %>
       <ul class="nav navbar-nav pull-right">
         <% if signed_in? %>
           <li><%= link_to "Hello, #{current_user.email}", "#" %></li>
