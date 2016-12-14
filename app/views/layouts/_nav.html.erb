@@ -16,6 +16,15 @@
           <li><%= link_to "Notices", notices_path %></li>
           <li><%= link_to "Events", events_path %></li>
           <li><%= link_to "Forum", topics_path %></li>
+          <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Marketplace <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Marketplace</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">My Purchases</a></li>
+              <li><a href="#">My Sale Commitments</a></li>
+            </ul>
+          </li>
         </ul>
       <% end %>
       <ul class="nav navbar-nav pull-right">
