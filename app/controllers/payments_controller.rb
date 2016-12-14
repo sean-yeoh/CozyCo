@@ -1,4 +1,6 @@
 class PaymentsController < ApplicationController
+	  protect_from_forgery with: :null_session
+
   def payment_method
   	if current_user.credits.empty?
   		Credit.create(user_id: current_user.id, amount: 0, cents: 0, escrow_amount: 0, escrow_cents: 0)
@@ -17,7 +19,9 @@ class PaymentsController < ApplicationController
   end
 
   def deposit
-
+  	if current_user.credits.empty?
+  		Credit.create(user_id: current_user.id, amount: 0, escrow_amount: 0)
+  	end
   end
 
   def new
@@ -33,27 +37,27 @@ class PaymentsController < ApplicationController
  	elsif amount[1].length > 2
  		flash.now[:alert] = "There are more than 2 decimals. Please input amount again."
  		render "deposit"
+ 	else
+ 		@amount = params[:amount]
   	end
   end
 
   def create
-  	dollar_amount = (100*params[:amount].to_r).to_i
+  	@id = params[:id]
+  	amount = params[:amount]
   	nonce_from_the_client = params[:payment_method_nonce]
-  	byebug
-  # 	@result = Braintree::Transaction.sale(amount: amount, payment_method_nonce: nonce_from_the_client, :options => {:submit_for_settlement => true})
-  # 	if @result.success? || @result.transaction
-  # 		@payment = Credit.new(amount: amount, nonce: nonce_from_the_client, cents: ??)
-		# respond_to do |format|
-		# 	if @payment.save
-		# 		format.html { redirect_to reservations_path, notice: 'Reservation for #{listing.address} was succesfully paid for.'}
-		# 	end
-		# end
-  #   else
-  #       error_messages = result.errors.map { |error| "Error: #{error.code}: #{error.message}" }
-		# 	respond_to do |format|
-		# 		format.html { redirect_to reservations_path, notice: "#{error_messages}"}
-		# 	end
-    # end
+  	@result = Braintree::Transaction.sale(amount: amount, payment_method_nonce: nonce_from_the_client, :options => {:submit_for_settlement => true})
+  	if @result.success? || @result.transaction
+  		record = Credit.find_by(user_id: @id)
+  		credit_id = record.id
+  		new_credit_amount = (record.amount.to_f + amount.to_f).to_s
+  		@deposit = Credit.update(credit_id, amount: new_credit_amount)
+		flash.now[:notice] = "You had deposited RM#{amount}. Your current balance is RM#{@deposit.amount}."
+		render "create"
+    else
+		flash.now[:alert] = "There is an error in processing your payment. Please try again."
+		redirect_to payment_path
+    end
   end
 
   def confirmation

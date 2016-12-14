@@ -29,10 +29,8 @@ ActiveRecord::Schema.define(version: 20161213152623) do
 
   create_table "credits", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "amount"
-    t.integer  "cents"
-    t.integer  "escrow_amount"
-    t.integer  "escrow_cents"
+    t.string   "amount"
+    t.string   "escrow_amount"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end

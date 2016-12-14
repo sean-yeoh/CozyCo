@@ -2,8 +2,9 @@ Rails.application.routes.draw do
   
   get 'payments/payment_method'
   post 'payments/decision'
-  get 'payments/deposit'
-  post 'payments/new'
+  get '/users/:id/payments/deposit' => "payments#deposit"
+  post '/users/:id/payments/new' => "payments#new", as: :payment
+  post '/users/:id/payments/create' => "payments#create"
 
   get 'listings/index'
 
