@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   
-  get 'payments/index'
+  get 'payments/payment_method'
   post 'payments/decision'
+  get 'payments/deposit'
+  post 'payments/new'
 
   get 'listings/index'
 

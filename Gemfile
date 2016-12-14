@@ -59,3 +59,6 @@ gem 'mailboxer'
 
 # for displaying icons
 gem "font-awesome-rails"
+
+# for payments
+gem 'braintree', '~> 2.69.0'
