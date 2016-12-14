@@ -60,6 +60,11 @@ gem 'mailboxer'
 # for displaying icons
 gem "font-awesome-rails"
 
+
+# for payments
+gem 'braintree', '~> 2.69.0'
+
 # for displaying events on a calendar
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
+

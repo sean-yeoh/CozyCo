@@ -24,6 +24,16 @@ ActiveRecord::Schema.define(version: 20161214035618) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "credits", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "amount"
+    t.string   "escrow_amount"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "credits", ["user_id"], name: "index_credits_on_user_id", using: :btree
+
   create_table "event_attendees", force: :cascade do |t|
     t.boolean  "attending",  default: false
     t.integer  "user_id"

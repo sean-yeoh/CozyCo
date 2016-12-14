@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  get 'payments/index'
+  
+  get '/reservations/:id/payments/payment_method' => "payments#payment_method"
+  post '/reservations/:id/payments/decision' => "payments#decision"
+  get '/users/:id/payments/deposit' => "payments#deposit"
+  post '/users/:id/payments/new' => "payments#new", as: :payment
+  post '/users/:id/payments/create' => "payments#create"
 
   get 'listings/index'
 
