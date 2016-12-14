@@ -15,3 +15,13 @@
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require_tree .
+//= require moment
+//= require fullcalendar
+
+
+$(document).on("turbolinks:load", function() {
+  $('#calendar').fullCalendar({
+    events: window.location.pathname + '.json'
+  });
+
+});
