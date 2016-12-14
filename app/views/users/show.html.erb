@@ -12,10 +12,13 @@
 
   <div class="col-md-8">
     <h2><%= @user.name %></h2>
-     <% if @user == current_user || current_user.superadmin? %>
+     <% if @user == current_user %>
       <p><%= link_to "Edit Profile", edit_user_path %></p>
     <% end %>
     <p><span class="glyphicon glyphicon-envelope"></span> <%= @user.email%></p>
     <p><%= @user.created_at.strftime("Joined on %b %Y") %></p>
+    <% if @user != current_user %>
+      <p><%= link_to "Send message", new_private_message_path(@user) %></p>
+    <% end %>
   </div>
 </div>

@@ -33,6 +33,9 @@ Rails.application.routes.draw do
     end
   end
 
+  get "/users/:id/conversations/new" => 'conversations#new_private_message', as: 'new_private_message'
+  # post "/users/:id/conversations" => 'conversations#create_private_message', as: 'private_message'
+
   resources :topics do
     resources :comments
   end
