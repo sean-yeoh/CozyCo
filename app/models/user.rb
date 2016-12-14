@@ -1,8 +1,9 @@
 class User < ActiveRecord::Base
   include Clearance::User
-
+  has_many :events_attendees
   has_many :topics
   has_many :comments
+  has_many :events
 
   # require 'mailboxer'
   # include Mailboxer::Models::Messageable
@@ -16,5 +17,16 @@ class User < ActiveRecord::Base
 
   def mailboxer_email(object)
     self.email
+  end
+
+  def credit_balance?
+    if Credit.find_by(user_id: self.id).nil?
+      return "0.00"
+    else
+      record = Credit.find_by(user_id: self.id)
+      amount = record.amount
+      cents = record.cents
+      return "#{amount}.#{cents}"
+    end
   end
 end

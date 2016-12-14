@@ -3,9 +3,8 @@ class CreateTopics < ActiveRecord::Migration
     create_table :topics do |t|
       t.string :name
       t.text :content
-
+      t.references :user, foreign_key: true
       t.timestamps null: false
     end
-    add_foreign_key :topics, :users
   end
 end

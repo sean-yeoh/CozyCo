@@ -3,15 +3,13 @@ Rails.application.routes.draw do
 
   get 'listings/index'
 
-  get 'welcome/index'
-
   root 'welcome#index'
 
   resources :notices
 
   resources :events
 
-
+  post 'events/:id/attend' => 'event_attendees#attend', as: 'attend'
   # Example resource route within a namespace:
   #   namespace :admin do
   #     # Directs /admin/products/* to Admin::ProductsController

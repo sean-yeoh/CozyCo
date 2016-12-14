@@ -59,3 +59,7 @@ gem 'mailboxer'
 
 # for displaying icons
 gem "font-awesome-rails"
+
+# for displaying events on a calendar
+gem 'fullcalendar-rails'
+gem 'momentjs-rails'
