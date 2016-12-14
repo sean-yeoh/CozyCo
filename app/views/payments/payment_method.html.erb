@@ -1,0 +1,11 @@
+<!-- listing text -->
+<!-- listing price -->
+	<p>Please choose your payment method.</p>
+	<form action="decision" method="post">
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token%>">
+	<input type="radio" id="cash" name="method" value="Cash">Cash<br>
+	<input type="radio" id="credit" name="method" value="Credit">Credit<br>
+	<input type="submit" value="Confirm">
+	</form>
+
+

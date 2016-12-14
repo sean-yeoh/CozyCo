@@ -11,11 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20161214162630) do
+
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+
+  create_table "activities", force: :cascade do |t|
+    t.integer  "trackable_id"
+    t.string   "trackable_type"
+    t.integer  "owner_id"
+    t.string   "owner_type"
+    t.string   "key"
+    t.text     "parameters"
+    t.integer  "recipient_id"
+    t.string   "recipient_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+=======
   create_table "comments", force: :cascade do |t|
     t.text     "comment"
     t.integer  "topic_id"
@@ -24,13 +40,28 @@ ActiveRecord::Schema.define(version: 20161214162630) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "credits", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "amount"
+    t.string   "escrow_amount"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "credits", ["user_id"], name: "index_credits_on_user_id", using: :btree
+
   create_table "event_attendees", force: :cascade do |t|
     t.boolean  "attending",  default: false
     t.integer  "user_id"
     t.integer  "event_id"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+>>>>>>> master
   end
+
+  add_index "activities", ["owner_id", "owner_type"], name: "index_activities_on_owner_id_and_owner_type", using: :btree
+  add_index "activities", ["recipient_id", "recipient_type"], name: "index_activities_on_recipient_id_and_recipient_type", using: :btree
+  add_index "activities", ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type", using: :btree
 
   create_table "events", force: :cascade do |t|
     t.integer  "user_id"
@@ -124,6 +155,14 @@ ActiveRecord::Schema.define(version: 20161214162630) do
   add_index "mailboxer_receipts", ["notification_id"], name: "index_mailboxer_receipts_on_notification_id", using: :btree
   add_index "mailboxer_receipts", ["receiver_id", "receiver_type"], name: "index_mailboxer_receipts_on_receiver_id_and_receiver_type", using: :btree
 
+  create_table "meetings", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "notices", force: :cascade do |t|
     t.string   "title"
     t.text     "body"
@@ -155,6 +194,8 @@ ActiveRecord::Schema.define(version: 20161214162630) do
   add_index "reservations", ["payment_id"], name: "index_reservations_on_payment_id", using: :btree
   add_index "reservations", ["user_id"], name: "index_reservations_on_user_id", using: :btree
 
+<<<<<<< HEAD
+=======
   create_table "topics", force: :cascade do |t|
     t.string   "name"
     t.text     "content"
@@ -163,6 +204,7 @@ ActiveRecord::Schema.define(version: 20161214162630) do
     t.datetime "updated_at", null: false
   end
 
+>>>>>>> master
   create_table "users", force: :cascade do |t|
     t.datetime "created_at",                                 null: false
     t.datetime "updated_at",                                 null: false

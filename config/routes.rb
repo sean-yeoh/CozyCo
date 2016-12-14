@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  get 'payments/index'
+  
+  get '/reservations/:id/payments/payment_method' => "payments#payment_method"
+  post '/reservations/:id/payments/decision' => "payments#decision"
+  get '/users/:id/payments/deposit' => "payments#deposit"
+  post '/users/:id/payments/new' => "payments#new", as: :payment
+  post '/users/:id/payments/create' => "payments#create"
 
   get 'listings/index'
 
@@ -8,6 +13,8 @@ Rails.application.routes.draw do
   resources :notices
 
   resources :events
+
+  resources :users, only: [:show, :edit, :update]
 
   post 'events/:id/attend' => 'event_attendees#attend', as: 'attend'
   # Example resource route within a namespace:
@@ -30,6 +37,9 @@ Rails.application.routes.draw do
       post :untrash
     end
   end
+
+  get "/users/:id/conversations/new" => 'conversations#new_private_message', as: 'new_private_message'
+  # post "/users/:id/conversations" => 'conversations#create_private_message', as: 'private_message'
 
   resources :topics do
     resources :comments
