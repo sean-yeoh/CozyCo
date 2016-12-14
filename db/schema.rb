@@ -11,10 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161209081529) do
+ActiveRecord::Schema.define(version: 20161213152623) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comments", force: :cascade do |t|
+    t.text     "comment"
+    t.integer  "post_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "comments", ["post_id"], name: "index_comments_on_post_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+
+  create_table "credits", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "amount"
+    t.integer  "cents"
+    t.integer  "escrow_amount"
+    t.integer  "escrow_cents"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "credits", ["user_id"], name: "index_credits_on_user_id", using: :btree
 
   create_table "events", force: :cascade do |t|
     t.integer  "user_id"
@@ -78,6 +101,13 @@ ActiveRecord::Schema.define(version: 20161209081529) do
   add_index "reservations", ["listing_id"], name: "index_reservations_on_listing_id", using: :btree
   add_index "reservations", ["payment_id"], name: "index_reservations_on_payment_id", using: :btree
   add_index "reservations", ["user_id"], name: "index_reservations_on_user_id", using: :btree
+
+  create_table "topics", force: :cascade do |t|
+    t.string   "name"
+    t.text     "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.datetime "created_at",                                 null: false

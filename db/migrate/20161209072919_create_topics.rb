@@ -6,6 +6,6 @@ class CreateTopics < ActiveRecord::Migration
 
       t.timestamps null: false
     end
-    add_foreign_key :topics, :users
+
   end
 end
