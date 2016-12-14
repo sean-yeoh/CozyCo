@@ -53,3 +53,9 @@ gem 'clearance'
 
 # for hiding keys from github
 gem 'figaro'
+
+# for private messaging
+gem 'mailboxer'
+
+# for displaying icons
+gem "font-awesome-rails"

@@ -9,7 +9,7 @@ class TopicsController < ApplicationController
 	end
 
 	def new
-		@topic = current_user.topics.build
+		@topic = Topic.new
 	end
 
 	def create
@@ -45,7 +45,7 @@ class TopicsController < ApplicationController
 	end
 
 	def topic_params
-		params.require(:topic).permit(:title, :content)
+		params.require(:topic).permit(:name, :description)
 	end
 end
 

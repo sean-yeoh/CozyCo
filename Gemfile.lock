@@ -47,6 +47,12 @@ GEM
       sass (>= 3.3.4)
     builder (3.2.2)
     byebug (9.0.6)
+    carrierwave (0.11.2)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
+      mime-types (>= 1.16)
+      mimemagic (>= 0.3.0)
     clearance (1.15.1)
       bcrypt
       email_validator (~> 1.4)
@@ -66,6 +72,8 @@ GEM
     execjs (2.7.0)
     figaro (1.1.1)
       thor (~> 0.14)
+    font-awesome-rails (4.3.0.0)
+      railties (>= 3.2, < 5.0)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     i18n (0.7.0)
@@ -81,9 +89,13 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
+    mailboxer (0.14.0)
+      carrierwave (>= 0.5.8)
+      rails (>= 4.2.0)
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
+    mimemagic (0.3.2)
     mini_portile2 (2.1.0)
     minitest (5.10.1)
     multi_json (1.12.1)
@@ -163,8 +175,10 @@ DEPENDENCIES
   clearance
   coffee-rails (~> 4.1.0)
   figaro
+  font-awesome-rails
   jbuilder (~> 2.0)
   jquery-rails
+  mailboxer
   pg (~> 0.15)
   rails (= 4.2.6)
   sass-rails (~> 5.0)
