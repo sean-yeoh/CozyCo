@@ -1,6 +1,6 @@
 <div id="topic_content">
   <h1>
-    <%= @topic.title %>
+    <%= @topic.name %>
   </h1>
   <p>
     <%= @topic.content %>
@@ -10,7 +10,9 @@
       <%= @topic.comments.count %>
       Comments
     </h2>
-    <%= render @topic.comments %>
+    <% @topic.comments.each do |comment| %>
+      <p><%= comment.comment %></p>
+    <% end %>
     <h3>Reply to thread</h3>
     <%= render "comments/form" %>
   </div>
