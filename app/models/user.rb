@@ -3,7 +3,9 @@ class User < ActiveRecord::Base
   has_many :events_attendees
   has_many :topics
   has_many :comments
+  has_many :credits
   has_many :events
+
 
   # require 'mailboxer'
   # include Mailboxer::Models::Messageable
@@ -29,4 +31,5 @@ class User < ActiveRecord::Base
       return "#{amount}.#{cents}"
     end
   end
+
 end
