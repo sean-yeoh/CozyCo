@@ -1,11 +1,12 @@
 class TopicsController < ApplicationController
-	before_action :find_topic, only: [:show, :edit, :update, :destroy]
+	before_action :require_login
 
 	def index
 		@topics = Topic.all.order("created_at DESC")
 	end
 
 	def show
+		@topic = Topic.find(params[:id])
 	end
 
 	def new
@@ -23,9 +24,11 @@ class TopicsController < ApplicationController
 	end
 
 	def edit
+		@topic = Topic.find(params[:id])
 	end
 
 	def update
+		@topic = Topic.find(params[:id])
 		if @topic.update(topic_params)
 			redirect_to @topic
 		else
@@ -34,6 +37,7 @@ class TopicsController < ApplicationController
 	end
 
 	def destroy
+		@topic = Topic.find(params[:id])
 		@topic.destroy
 		redirect_to root_path
 	end
@@ -45,7 +49,7 @@ class TopicsController < ApplicationController
 	end
 
 	def topic_params
-		params.require(:topic).permit(:name, :description)
+		params.require(:topic).permit(:name, :content)
 	end
 end
 

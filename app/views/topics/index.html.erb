@@ -1,8 +1,9 @@
+<%= link_to "Create new topic", new_topic_path %>
 <div id="topics">
   <% @topics.each do |topic| %>
     <div class="topic">
       <h2 class="title">
-        <%= link_to topic.title, topic %>
+        <%= link_to topic.name, topic %>
       </h2>
       <p class="date">
         Published at

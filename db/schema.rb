@@ -11,10 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20161213073955) do
+
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
 
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id"
@@ -27,6 +31,32 @@ ActiveRecord::Schema.define(version: 20161213073955) do
     t.string   "recipient_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+=======
+  create_table "comments", force: :cascade do |t|
+    t.text     "comment"
+    t.integer  "topic_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "credits", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "amount"
+    t.string   "escrow_amount"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "credits", ["user_id"], name: "index_credits_on_user_id", using: :btree
+
+  create_table "event_attendees", force: :cascade do |t|
+    t.boolean  "attending",  default: false
+    t.integer  "user_id"
+    t.integer  "event_id"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+>>>>>>> master
   end
 
   add_index "activities", ["owner_id", "owner_type"], name: "index_activities_on_owner_id_and_owner_type", using: :btree
@@ -37,10 +67,11 @@ ActiveRecord::Schema.define(version: 20161213073955) do
     t.integer  "user_id"
     t.string   "title"
     t.text     "body"
-    t.date     "event_date"
     t.string   "photo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date     "start_date"
+    t.date     "end_date"
   end
 
   add_index "events", ["user_id"], name: "index_events_on_user_id", using: :btree
@@ -160,6 +191,17 @@ ActiveRecord::Schema.define(version: 20161213073955) do
   add_index "reservations", ["payment_id"], name: "index_reservations_on_payment_id", using: :btree
   add_index "reservations", ["user_id"], name: "index_reservations_on_user_id", using: :btree
 
+<<<<<<< HEAD
+=======
+  create_table "topics", force: :cascade do |t|
+    t.string   "name"
+    t.text     "content"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+>>>>>>> master
   create_table "users", force: :cascade do |t|
     t.datetime "created_at",                                 null: false
     t.datetime "updated_at",                                 null: false
@@ -177,6 +219,10 @@ ActiveRecord::Schema.define(version: 20161213073955) do
   add_index "users", ["email"], name: "index_users_on_email", using: :btree
   add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
 
+  add_foreign_key "comments", "topics"
+  add_foreign_key "comments", "users"
+  add_foreign_key "event_attendees", "events"
+  add_foreign_key "event_attendees", "users"
   add_foreign_key "events", "users"
   add_foreign_key "listings", "listing_types"
   add_foreign_key "listings", "users"
@@ -187,4 +233,5 @@ ActiveRecord::Schema.define(version: 20161213073955) do
   add_foreign_key "reservations", "listings"
   add_foreign_key "reservations", "payments"
   add_foreign_key "reservations", "users"
+  add_foreign_key "topics", "users"
 end

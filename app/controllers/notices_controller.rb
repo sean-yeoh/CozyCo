@@ -3,6 +3,10 @@ class NoticesController < ApplicationController
     @notices = Notice.all
   end
 
+  def show
+    @notice = Notice.find(params[:id])
+  end
+
   def new
     @notice = Notice.new
   end
