@@ -25,7 +25,7 @@ class NoticesController < ApplicationController
   def update
     @notice = Notice.find(params[:id])
      if @notice.update!(notice_params)
-       redirect_to notices_index_path
+       redirect_to notices_path
      else
        render 'edit'
      end
