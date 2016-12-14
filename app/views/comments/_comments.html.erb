@@ -1,0 +1,19 @@
+<div class="comment clearfix">
+  <div class="content">
+    <p class="comment_content">
+      <%= comment.comment %>
+    </p>
+    <p class="comment_author">
+      <%= comment.user.email %>
+    </p>
+  </div>
+  <div class="buttons">
+    <%= link_to "Edit", edit_topic_comment_path(comment.topic, comment) %>
+    <%= link_to "Delete", [comment.topic, comment], method: :delete, data: { confirm: "Are you sure?" } %>
+  </div>
+  <br/>
+  <hr/>
+  <br/>
+  <%= link_to "Edit", edit_topic_path(@topic), class: "button" %>
+  <%= link_to "Delete", topic_path(@topic), method: :delete, data: { confirm: "Are you sure you want to do this?" }, class: "button" %>
+</div>
