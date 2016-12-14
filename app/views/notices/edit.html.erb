@@ -1,9 +1,10 @@
-
 <div class="text-center" style="padding:30px 0">
 
-  <h1> New Notice </h1>
+  <h1>Edit Notice</h1>
+  <%= link_to 'Back', notices_path, class: "btn btn-primary" %>
   <hr>
-  <%= form_for :notice, url: notices_path  do |f| %>
+
+  <%= form_for :notice, url: notice_path, method: :patch  do |f| %>
     <p>
       <%= f.label :title %><br>
       <%= f.text_field :title %>
@@ -26,7 +27,9 @@
   <% end %>
 
 
-</div>
 
-<hr>
-<%= link_to 'Back to Notices', notices_path, class: "btn btn-primary" %>
+
+  <hr>
+
+
+</div>

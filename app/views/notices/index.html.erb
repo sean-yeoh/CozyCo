@@ -6,6 +6,8 @@
       <th>Title</th>
       <th>Notice</th>
       <th>Created At</th>
+      <th>Edit</th>
+      <th>Delete</th>
 
 
       <% @notices.each do |notice| %>
@@ -14,6 +16,10 @@
         <td><%= notice.title %></td>
         <td><%= notice.body %></td>
         <td><%= notice.created_at %></td>
+        <td><%= link_to 'Edit', edit_notice_path(notice) %> </td>
+        <td><%= link_to 'Delete', notice_path(notice),
+             method: :delete,
+             data: { confirm: 'Are you sure?' } %></td>
       </tr>
       <% end %>
     </table>
