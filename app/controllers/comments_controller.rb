@@ -31,8 +31,8 @@ class CommentsController < ApplicationController
 
 	def destroy
 		@topic = Topic.find(params[:topic_id])
-		@comment = @topic.comments.find(params[:id])
+		@comment = Comment.find(params[:id])
 		@comment.destroy
-		redirect_to post_path(@topic)
+		redirect_to topic_path(@topic)
 	end
 end
