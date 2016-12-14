@@ -1,0 +1,28 @@
+<h1>Created by <%= @event.user.email %></h1>
+<div>
+  Title: <%= @event.title %>
+</div>
+
+<div>
+  Details: <%= @event.body %>
+</div>
+
+<div>
+  Start Date: <%= @event.start_date %>
+</div>
+
+<div>
+  End Date: <%= @event.end_date %>
+</div>
+
+<% if @attend.nil? %>
+  <%= link_to "Attend this event", attend_path(@event), method: :post, class: "btn btn-success" %>
+<% elsif @attend.attending %>
+  <%= link_to "Unattend this event", attend_path(@event), method: :post, class: "btn btn-danger" %>
+<% else %>
+  <%= link_to "Attend this event", attend_path(@event), method: :post, class: "btn btn-success" %>
+<% end %>
+
+<p><%= pluralize(@event_attendees.count, "person") %> attending</p>
+
+<p><%= link_to "Back", events_path %></p>
