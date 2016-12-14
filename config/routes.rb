@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   resources :events
 
+  resources :users, only: [:show, :edit, :update]
+
   post 'events/:id/attend' => 'event_attendees#attend', as: 'attend'
   # Example resource route within a namespace:
   #   namespace :admin do

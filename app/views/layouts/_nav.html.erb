@@ -21,6 +21,7 @@
       <ul class="nav navbar-nav pull-right">
         <% if signed_in? %>
           <li><%= link_to "Hello, #{current_user.email}", "#" %></li>
+          <li><%= link_to "Profile", user_path(current_user) %></li>
           <li><%= link_to "Inbox", mailbox_inbox_path %></li>
           <li><%= link_to "Logout", sign_out_path, method: :delete %></li>
         <% else %>
