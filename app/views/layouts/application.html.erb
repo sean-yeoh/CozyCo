@@ -7,6 +7,20 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+
+<%= render 'layouts/nav' %>
+
+<% flash.each do |key, value| %>
+    <div class="text-center <%= flash_class(key) %>">
+      <%= value %>
+    </div>
+<% end %>
+
+<div class="container">
+  <%= yield %>
+</div>
+
+  <!--
   <% if signed_in? %>
     Signed in as: <%= current_user.email %>
     <%= button_to 'Sign out', sign_out_path, method: :delete %>
@@ -19,8 +33,7 @@
       <div class="flash <%= key %>"><%= value %></div>
     <% end %>
   </div>
-
-<%= yield %>
+  -->
 
 </body>
 </html>
