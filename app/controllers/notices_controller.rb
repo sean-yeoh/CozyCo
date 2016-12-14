@@ -3,6 +3,10 @@ class NoticesController < ApplicationController
     @notices = Notice.all
   end
 
+  def show
+    @notice = Notice.find(params[:id])
+  end
+
   def new
     @notice = Notice.new
   end
@@ -11,7 +15,7 @@ class NoticesController < ApplicationController
     @notice = Notice.new(notice_params)
     @notice.user_id = current_user.id
     if @notice.save
-      redirect_to notices_index_path
+      redirect_to notices_path
     else
       render 'new'
     end
@@ -25,7 +29,7 @@ class NoticesController < ApplicationController
   def update
     @notice = Notice.find(params[:id])
      if @notice.update!(notice_params)
-       redirect_to notices_index_path
+       redirect_to notices_path
      else
        render 'edit'
      end
