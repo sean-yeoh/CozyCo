@@ -22,7 +22,27 @@ class EventsController < ApplicationController
     @event_attendees = @event.event_attendees.where(attending: true)
   end
 
+  def edit
+    @event = Event.find(params[:id])
+    render 'edit'
+  end
+
+  def update
+    @event = Event.find(params[:id])
+     if @event.update!(event_params)
+       redirect_to events_path
+     else
+       render 'edit'
+     end
+  end
+
+  def destroy
+    @event = Event.find(params[:id])
+    @event.destroy
+    redirect_to events_path
+  end
+
   def event_params
-    params.require(:event).permit(:title, :body, :start_date, :end_date)
+    params.require(:event).permit(:title, :body, :start_date, :end_date, :start_time, :location, :POC)
   end
 end

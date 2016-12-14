@@ -12,7 +12,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 
-ActiveRecord::Schema.define(version: 20161213073955) do
+ActiveRecord::Schema.define(version: 20161214162630) do
 
 
 
@@ -72,6 +72,9 @@ ActiveRecord::Schema.define(version: 20161213073955) do
     t.datetime "updated_at", null: false
     t.date     "start_date"
     t.date     "end_date"
+    t.time     "start_time"
+    t.string   "location"
+    t.string   "POC"
   end
 
   add_index "events", ["user_id"], name: "index_events_on_user_id", using: :btree
