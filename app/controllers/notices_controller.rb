@@ -11,7 +11,7 @@ class NoticesController < ApplicationController
     @notice = Notice.new(notice_params)
     @notice.user_id = current_user.id
     if @notice.save
-      redirect_to notices_index_path
+      redirect_to notices_path
     else
       render 'new'
     end
