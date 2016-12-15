@@ -24,6 +24,7 @@
     <div class="panel panel-default">
       <div class="panel-heading"><h4>Upcoming Events</h4></div>
         <div class="panel-body">
+          <% if !@events.blank? %>
           <% @events.each do |event| %>
           <b><%= event.title %></b><br>
           <p><%= event.body %><p>
@@ -31,6 +32,7 @@
               <span class="glyphicon glyphicon-user"></span> <%= event.event_attendees.where(attending: true).count %> </p>
 
                 <%= link_to 'More details...', event_path(event) %><hr>
+          <% end %>
           <% end %>
           <%= link_to 'All Events', events_path %>
         </div>
