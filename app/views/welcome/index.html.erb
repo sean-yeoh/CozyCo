@@ -1,7 +1,7 @@
 <% if signed_in? %>
 <div class="jumbotron text-center">
   <h1>CozyCo</h1>
-  <p>Welcome to CozyCo, <%= current_user.email %></p>
+  <p>Welcome to CozyCo, <%= current_user.name %></p>
 </div>
 
 <div class="container">
@@ -49,6 +49,7 @@
 
 
 <% else %>
-  <h1>Welcome to CozyCo, sign up now!</h1>
-  <p>Find me in app/views/welcome/index.html.erb</p>
+<div class="jumbotron text-center">
+  <h1>CozyCo</h1>
+</div>
 <% end %>

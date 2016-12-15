@@ -11,7 +11,11 @@
   </div>
 
   <div class="col-md-8">
+    <img src="/app/assets/images/_generic_female.jpg" name="profile" width="140" height="140" class="img-circle"></a>
     <h2><%= @user.name %></h2>
+    <h5><%= @user.resident_type %></h5>
+    <h6><%= @user.role.capitalize %></h6>
+
      <% if @user == current_user %>
       <p><%= link_to "Edit Profile", edit_user_path %></p>
     <% end %>

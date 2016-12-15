@@ -16,5 +16,10 @@
     <%= f.text_field :resident_type, class: 'form-control' %>
   </div>
 
+  <div class="form-group">
+    <%= f.label :role %>
+    <%= f.select(:role, [['Resident', 'resident'], ['Administrator', 'administrator'], ['Super Admin', 'super_admin']]) %>
+  </div>
+
   <p><%= f.submit class: 'btn btn-warning' %></p>
 <% end %>
