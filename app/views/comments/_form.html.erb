@@ -1,4 +1,6 @@
+
+
 <%= form_for([@topic, @topic.comments.build]) do |f| %>
-  <%= f.text_field :comment %>
+  <%= f.text_area :comment, placeholder: "Add comment..." %>
   <%= f.submit %>
 <% end %>

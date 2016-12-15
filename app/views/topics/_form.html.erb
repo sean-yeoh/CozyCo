@@ -1,4 +1,7 @@
-<%= form_for @topic do |f| %>
+
+
+
+<%= form_for @topic, :html => {:class => "form-horizontal center"} do |f| %>
   <%= f.label :name, "Title" %><br>
   <%= f.text_field :name %><br>
 

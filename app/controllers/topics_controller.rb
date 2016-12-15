@@ -52,4 +52,3 @@ class TopicsController < ApplicationController
 		params.require(:topic).permit(:name, :content)
 	end
 end
-
