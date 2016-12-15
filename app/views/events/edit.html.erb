@@ -1,4 +1,4 @@
-<%= form_for event do |f| %>
+<%= form_for :event, url: event_path, method: :patch  do |f| %>
 
   <div class="form-group">
     <%= f.label :event %>
