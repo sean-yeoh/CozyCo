@@ -1,20 +1,24 @@
 Rails.application.routes.draw do
-  
+
   get '/reservations/:id/payments/payment_method' => "payments#payment_method"
   post '/reservations/:id/payments/decision' => "payments#decision"
-  get '/users/:id/payments/deposit' => "payments#deposit"
+  get '/users/:id/payments/deposit' => "payments#deposit", as: :deposit
   post '/users/:id/payments/new' => "payments#new", as: :payment
   post '/users/:id/payments/create' => "payments#create"
 
-  get 'listings/index'
-
   root 'welcome#index'
+
+  resources :listings do
+    resources :reservations
+  end
 
   resources :notices
 
   resources :events
 
   resources :users, only: [:show, :edit, :update]
+
+  get '/search' => 'listings#search'
 
   post 'events/:id/attend' => 'event_attendees#attend', as: 'attend'
   # Example resource route within a namespace:

@@ -1,2 +1,66 @@
-<h1>Listings#index</h1>
-<p>Find me in app/views/listings/index.html.erb</p>
+<div class="row">
+  <div class="col-md-3">
+    <h2 class="text-center"><%= link_to "Create new listing", new_listing_path %></h2>
+  </div>
+
+  <div class="col-md-9">
+    <div class="row">
+      <div class="col-md-12">
+        <h2 class="text-center">Search</h2>
+      </div>
+    </div>
+
+    <div class="row">
+      <%= form_tag("/search", method: "get", class: 'form-inline') do %>
+        <div class="col-md-3">
+          <div class="form-group">
+            <%= label_tag :listing_type_id %>
+            <%= select_tag :listing_type_id, options_for_select(@listing_types), class: 'form-control', include_blank: true %>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <%= label_tag :min_price %>
+            <%= number_field_tag :min_price, class: 'form-control' %>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <%= label_tag :max_price %>
+            <%= number_field_tag :max_price, class: 'form-control' %>
+          </div>
+        </div>
+
+        <div class="col-md-1">
+          <%= submit_tag "Search", class: "btn btn-info" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<table class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Listing Type</th>
+      <th>Price</th>
+      <th>Seller</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @listings.each do |listing| %>
+      <tr>
+        <td><%= listing.text %></td>
+        <td><%= listing.listing_type.name %></td>
+        <td><%= listing.price %></td>
+        <td><%= listing.user.name %></td>
+        <td><%= link_to "Buy Now", new_listing_reservation_path(listing) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
