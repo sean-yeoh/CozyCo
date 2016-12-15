@@ -12,11 +12,12 @@ class Confirmation < ActiveRecord::Base
 	end
 
 	def self.send_cash_payment_message(reservation_id)
-		# reservation = Reservation.find(reservation_id)
-		# purchaser_id = reservation.user_id
-		# seller_id = reservation.listing.user_id
-		# purchaser = User.find(purchaser_id).
-		# purchaser.send_message(seller, "I will be paying by Cash.", "Cash payment choice by #{purchaser}.")
+		reservation = Reservation.find(reservation_id)
+		purchaser_id = reservation.user_id
+		seller_id = reservation.listing.user_id
+		purchaser = User.find(purchaser_id)
+		seller = User.find(seller_id)
+		purchaser.send_message(seller, "I will be paying by Cash.", "Cash payment choice by #{purchaser}.")
 	end
 
 end
