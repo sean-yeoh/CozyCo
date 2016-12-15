@@ -20,11 +20,13 @@ Condominium Forum
         <%= topic.user.name %>
       </p>
       <p class="count">
-      <%= pluralize(topic.comments.count, "comment") %>, 
-        last commented
+      <%= pluralize(topic.comments.count, "comment") %>
+      <% unless topic.comments.blank? %>
+      , last commented
         <%= time_ago_in_words(topic.comments.last.updated_at) %>
         ago by
         <%= topic.comments.last.user.name %>
+      <% end %>
       </p>
        <hr/>
     </div>
