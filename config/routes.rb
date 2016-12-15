@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
-  get '/reservations/:id/payments/payment_method' => "payments#payment_method"
-  post '/reservations/:id/payments/decision' => "payments#decision"
+  get '/reservations/:id/payment_method' => "payments#payment_method", as: :payment_method
+  post '/reservations/:id/decision' => "payments#decision"
   get '/users/:id/payments/deposit' => "payments#deposit", as: :deposit
   post '/users/:id/payments/new' => "payments#new", as: :payment
   post '/users/:id/payments/create' => "payments#create"

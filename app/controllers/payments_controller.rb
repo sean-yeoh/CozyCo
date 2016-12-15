@@ -6,12 +6,16 @@ class PaymentsController < ApplicationController
   end
 
   def decision
+    reservation_id = params[:id]
   	if params[:method] == "Cash"
   		# send message to counterparty
+      Confirmation.send_cash_payment_message(reservation_id)
+      Confirmation.pay_by_cash(reservation_id)
   		flash.now[:notice] = "Your choice to pay in cash has been made known to your fellow resident."
   	elsif params[:method] == "Credit"
   		# send message to counterparty
-  		# update escrow balance
+      Confirmation.send_credit_payment_message(reservation_id)
+      Confirmation.pay_by_credit(reservation_id)
   		flash.now[:notice] = "Your choice to pay by credit has been made known to your fellow resident."
   	end
   end
