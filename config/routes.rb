@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   resources :events
 
-  resources :users, only: [:show, :edit, :update]
+  resources :users, only: [:show, :edit, :update, :index]
 
   get '/search' => 'listings#search'
 
