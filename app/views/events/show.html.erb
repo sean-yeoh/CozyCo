@@ -1,19 +1,31 @@
-<h1>Created by <%= @event.user.email %></h1>
+
 <div>
-  Title: <%= @event.title %>
+  <h4> <%= @event.title %> </h4><hr>
 </div>
 
 <div>
-  Details: <%= @event.body %>
+  <b>Details:</b> <%= @event.body %>
 </div>
 
 <div>
-  Start Date: <%= @event.start_date %>
+  <b>Start Date:</b> <%= @event.start_date %>
 </div>
 
 <div>
-  End Date: <%= @event.end_date %>
+  <b>Time:</b> <%= @event.start_time.strftime("%I:%M%P") %>
 </div>
+
+<div>
+  <b>Location:</b> <%= @event.location %>
+</div>
+
+<div>
+  <b>POC:</b> <%= @event.POC %>
+</div>
+
+<div>
+  <b>Created by:</b> <%= @event.user.email %>
+</div><hr> 
 
 <% if @attend.nil? %>
   <%= link_to "Attend this event", attend_path(@event), method: :post, class: "btn btn-success" %>
@@ -26,3 +38,8 @@
 <p><%= pluralize(@event_attendees.count, "person") %> attending</p>
 
 <p><%= link_to "Back", events_path %></p>
+
+<%= link_to 'Edit', edit_event_path(@event) %>
+<%= link_to 'Delete', event_path(@event),
+     method: :delete,
+     data: { confirm: 'Are you sure?' } %>

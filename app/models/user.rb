@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :credits
   has_many :events
-
+  has_many :listings
 
   # require 'mailboxer'
   # include Mailboxer::Models::Messageable
@@ -31,5 +31,7 @@ class User < ActiveRecord::Base
       return "#{amount}.#{cents}"
     end
   end
+
+  enum role: [:resident, :administrator, :super_admin]
 
 end

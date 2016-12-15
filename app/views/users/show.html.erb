@@ -1,0 +1,35 @@
+<div class="row" style="background-color: #d9d9d9">
+  <div class="col-md-4">
+    <%= image_tag("_generic_female.jpg", size: "160x160") %>
+    <% if @user.photo.nil? %>
+      <%= form_for @user do |f| %>
+        <%= f.file_field :photo %>
+        <%= f.submit "Upload" %>
+      <% end %>
+    <% else %>
+      <%= image_tag(@user.photo.url.to_s, alt: "#{@user.email}'s Avatar", class: 'img-responsive') %><br>
+    <% end %>
+  </div>
+
+  <div class="col-md-8">
+
+    <h2><%= @user.name %></h2>
+    <h5><%= @user.resident_type %></h5>
+    <h6><%= @user.role.capitalize %></h6>
+
+     <% if @user == current_user %>
+      <% if Credit.find_by_user_id(current_user.id).nil? %>
+        <p>Balance: RM 0.00</p>
+      <% else %>
+        <p>Balance: RM <%= Credit.find_by_user_id(current_user.id).amount %></p>
+      <% end %>
+      <p><%= link_to "Add Deposit", deposit_path(current_user) %></p>
+    <% end %>
+    <p><span class="glyphicon glyphicon-envelope"></span> <%= @user.email%></p>
+    <p><%= @user.created_at.strftime("Joined in %b %Y") %></p>
+    <p><%= link_to "Edit Profile", edit_user_path, class: "btn btn-primary" %></p>
+    <% if @user != current_user %>
+      <p><%= link_to "Send message", new_private_message_path(@user) %></p>
+    <% end %>
+  </div>
+</div>
