@@ -24,6 +24,15 @@ ActiveRecord::Schema.define(version: 20161214035618) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "confirmations", force: :cascade do |t|
+    t.integer  "reservation_id"
+    t.boolean  "host_confirmation",     default: false
+    t.boolean  "purchase_confirmation", default: false
+    t.string   "method"
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+  end
+
   create_table "credits", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "amount"
@@ -152,14 +161,14 @@ ActiveRecord::Schema.define(version: 20161214035618) do
   create_table "reservations", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "listing_id"
-    t.integer  "payment_id"
-    t.string   "date",                    array: true
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "confirmation_id"
+    t.string   "date",                         array: true
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
+  add_index "reservations", ["confirmation_id"], name: "index_reservations_on_confirmation_id", using: :btree
   add_index "reservations", ["listing_id"], name: "index_reservations_on_listing_id", using: :btree
-  add_index "reservations", ["payment_id"], name: "index_reservations_on_payment_id", using: :btree
   add_index "reservations", ["user_id"], name: "index_reservations_on_user_id", using: :btree
 
   create_table "topics", force: :cascade do |t|
@@ -198,8 +207,8 @@ ActiveRecord::Schema.define(version: 20161214035618) do
   add_foreign_key "mailboxer_notifications", "mailboxer_conversations", column: "conversation_id", name: "notifications_on_conversation_id"
   add_foreign_key "mailboxer_receipts", "mailboxer_notifications", column: "notification_id", name: "receipts_on_notification_id"
   add_foreign_key "notices", "users"
+  add_foreign_key "reservations", "confirmations"
   add_foreign_key "reservations", "listings"
-  add_foreign_key "reservations", "payments"
   add_foreign_key "reservations", "users"
   add_foreign_key "topics", "users"
 end
