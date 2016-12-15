@@ -32,4 +32,6 @@ class User < ActiveRecord::Base
     end
   end
 
+  enum role: [:resident, :administrator, :super_admin]
+
 end
