@@ -71,8 +71,7 @@ ActiveRecord::Schema.define(version: 20161214162630) do
     t.string   "text"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-    t.integer  "amount"
-    t.integer  "cents"
+    t.string   "price"
   end
 
   add_index "listings", ["listing_type_id"], name: "index_listings_on_listing_type_id", using: :btree

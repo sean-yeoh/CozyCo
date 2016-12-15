@@ -1,4 +1,12 @@
+
+<h1 class="header">
+Condominium Forum
+</h1>
+ <br/>
 <%= link_to "Create new topic", new_topic_path %>
+
+ <hr/>
+
 <div id="topics">
   <% @topics.each do |topic| %>
     <div class="topic">
@@ -8,9 +16,17 @@
       <p class="date">
         Published at
         <%= time_ago_in_words(topic.created_at) %>
-        by
+        ago by
         <%= topic.user.name %>
       </p>
+      <p class="count">
+      <%= pluralize(topic.comments.count, "comment") %>, 
+        last commented
+        <%= time_ago_in_words(topic.comments.last.updated_at) %>
+        ago by
+        <%= topic.comments.last.user.name %>
+      </p>
+       <hr/>
     </div>
   <% end %>
 </div>
