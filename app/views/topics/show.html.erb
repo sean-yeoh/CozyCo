@@ -1,42 +1,32 @@
 <div id="topic_content">
-  <h1>
-    <%= @topic.name %>
-  </h1>
-  <p>
-    by <%= @topic.user.email %>
-  </p>
-  <p>
-    <%= time_ago_in_words(@topic.created_at) %> ago
-  </p>
 
-  <h3>
-    <%= @topic.content %>
-  </h3>
-  <br/>
-   <hr/>
-  <br/>
+  <div class="bg-info">
+    <h2><%= @topic.name %></h2>
+    <h5><%= @topic.content %></h5>
+    <div class="text-primary"><small>
+      <span class="glyphicon glyphicon-comment"></span><%= pluralize(@topic.comments.count, "comment") %><br>
+      by <%= @topic.user.name %>
+      <%= time_ago_in_words(@topic.created_at) %> ago</small>
+    </div>
+  </div><hr>
+
   <div id="comments">
-    <h2>
-      <%= pluralize(@topic.comments.count, "comment") %>
-    </h2>
+
     <% @topic.comments.each do |comment| %>
-      <h3><%= comment.comment %></h3>
-      <p> by <%= comment.user.email %></p>
-      <p> <%= time_ago_in_words(comment.updated_at) %> ago</p>
+      <h5><%= comment.comment %></h5>
+      <p class="text-primary"><small>
+        by <%= comment.user.name %><br>
+        <%= time_ago_in_words(comment.updated_at) %> ago</small></p>
+
       <% if current_user == comment.user %>
-        <p><%= link_to "Edit comment", edit_topic_comment_path(@topic, comment) %></p>
-        <p><%= link_to "Delete comment", topic_comment_path(@topic, comment), method: :delete %></p>
+        <%= link_to "Edit comment", edit_topic_comment_path(@topic, comment) %>
+        <%= link_to "Delete comment", topic_comment_path(@topic, comment), method: :delete %>
       <% end %>
-    <% end %>
-  <br/>
-   <hr/>
-  <br/>
-    <h3>Reply to thread</h3>
+    <% end %> <hr>
+
+    <h5>Add Comment</h5>
     <%= render "comments/form" %>
   </div>
-  <br/>
-  <hr/>
-  <br/>
   <p><%= link_to "Edit topic", edit_topic_path(@topic) %></p>
   <p><%= link_to "Delete topic", topic_path(@topic), method: :delete, data: { confirm: "Are you sure you want to do this?" } %></p>
 </div>

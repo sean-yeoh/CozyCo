@@ -1,31 +1,34 @@
 
 <h1 class="header">
-Condominium Forum
+Forum
 </h1>
  <br/>
-<%= link_to "Create new topic", new_topic_path %>
+<%= link_to "Create new topic", new_topic_path, class: "btn btn-primary"  %>
 
  <hr/>
 
 <div id="topics">
   <% @topics.each do |topic| %>
     <div class="topic">
-      <h2 class="title">
+      <h3 class="title">
         <%= link_to topic.name, topic %>
-      </h2>
+      </h3>
       <p class="date">
-        Published at
+       Published
         <%= time_ago_in_words(topic.created_at) %>
         ago by
         <%= topic.user.name %>
       </p>
       <p class="count">
-      <%= pluralize(topic.comments.count, "comment") %>
-      <% unless topic.comments.blank? %>
-      , last commented
+        <span class="glyphicon glyphicon-comment"></span>
+        <%= pluralize(topic.comments.count, "comment") %>
+        <% unless topic.comments.blank? %>
+      </p>
+       <p> Last commented on
         <%= time_ago_in_words(topic.comments.last.updated_at) %>
         ago by
         <%= topic.comments.last.user.name %>
+      </p>
       <% end %>
       </p>
        <hr/>
