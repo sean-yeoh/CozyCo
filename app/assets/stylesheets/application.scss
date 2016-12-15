@@ -23,3 +23,13 @@ table tr td.right {background: #eee;}
 table tr td h4 {margin:0; padding:0; font-weight:normal;}
 
 body { padding-top: 70px; }
+
+#calendar {padding-top: 10px;}
+
+.event-body {
+  font-size: 18px;
+  .event-header {
+  font-size: 20px;
+  color: #00004d;
+  }
+}

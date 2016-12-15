@@ -21,7 +21,8 @@
 
 $(document).on("turbolinks:load", function() {
   $('#calendar').fullCalendar({
-    events: window.location.pathname + '.json'
+    height: 750,
+    events: window.location.pathname + '.json',
   });
 
 });

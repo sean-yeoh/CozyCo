@@ -1,45 +1,111 @@
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog modal-sm">
 
-<div>
-  <h4> <%= @event.title %> </h4><hr>
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">People attending <%= @event.title %></h4>
+      </div>
+      <div class="modal-body">
+        <% @event_attendees.each do |attendee| %>
+          <%= link_to attendee.user.name, user_path(attendee.user) %>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
 </div>
 
-<div>
-  <b>Details:</b> <%= @event.body %>
+<div class="row">
+  <div class="col-md-1">
+    <%= link_to "Back", events_path, class: "btn btn-default" %>
+  </div>
+  <div class="col-md-offset-9 col-md-2">
+    <%= link_to 'Edit', edit_event_path(@event), class: "btn btn-primary" %>
+    <%= link_to 'Delete', event_path(@event), class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+  </div>
+  <div class="col-md-12 text-center">
+    <h2><%= @event.title %></h2>
+  </div>
+
+  <div class="col-md-12 text-center">
+    <b>Created by:</b> <%= link_to @event.user.name, user_path(@event.user) %>
+  </div>
 </div>
 
-<div>
-  <b>Start Date:</b> <%= @event.start_date %>
+<hr>
+
+<div class="row event-body">
+  <div class="col-md-6">
+    <div class="row">
+      <div class="col-md-12 event-header">
+        <i class="fa fa-bars" aria-hidden="true"></i> <b>Details</b>
+      </div>
+      <div class="col-md-12 text-justify">
+        <%= simple_format(@event.body) %>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col-md-6">
+    <div class="row">
+      <div class="col-md-12 event-header">
+          <i class="fa fa-map-marker" aria-hidden="true"></i> <b>Location</b>
+        </div>
+        <div class="col-md-12">
+          <%= simple_format(@event.location) %>
+        </div>
+    </div>
+
+    <div class="row" style="padding-bottom: 10px">
+      <div class="col-md-12 event-header">
+        <i class="fa fa-bookmark-o" aria-hidden="true"></i> <b>Start Date</b>
+      </div>
+      <div class="col-md-12">
+        <%= @event.start_date %>
+      </div>
+    </div>
+
+    <div class="row" style="padding-bottom: 10px">
+      <div class="col-md-12 event-header">
+        <i class="fa fa-clock-o" aria-hidden="true"></i> <b>Time</b>
+      </div>
+      <div class="col-md-12">
+        <%= @event.start_time.strftime("%I:%M%P") %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 event-header">
+        <i class="fa fa-phone" aria-hidden="true"></i> <b>POC</b>
+      </div>
+      <div class="col-md-12">
+        <%= @event.POC %>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div>
-  <b>Time:</b> <%= @event.start_time.strftime("%I:%M%P") %>
+<hr>
+
+<div class="row">
+  <div class="col-md-12 text-center">
+    <% if @attend.nil? %>
+      <%= link_to "Attend this event", attend_path(@event), method: :post, class: "btn btn-success" %>
+    <% elsif @attend.attending %>
+      <%= link_to "Unattend this event", attend_path(@event), method: :post, class: "btn btn-danger" %>
+    <% else %>
+      <%= link_to "Attend this event", attend_path(@event), method: :post, class: "btn btn-success" %>
+    <% end %>
+  </div>
+
+  <div class="col-md-12 text-center">
+    <a href="#myModal" data-toggle="modal" data-dismiss="modal"><%= pluralize(@event_attendees.count, "person") %> attending</a>
+  </div>
 </div>
-
-<div>
-  <b>Location:</b> <%= @event.location %>
-</div>
-
-<div>
-  <b>POC:</b> <%= @event.POC %>
-</div>
-
-<div>
-  <b>Created by:</b> <%= @event.user.email %>
-</div><hr> 
-
-<% if @attend.nil? %>
-  <%= link_to "Attend this event", attend_path(@event), method: :post, class: "btn btn-success" %>
-<% elsif @attend.attending %>
-  <%= link_to "Unattend this event", attend_path(@event), method: :post, class: "btn btn-danger" %>
-<% else %>
-  <%= link_to "Attend this event", attend_path(@event), method: :post, class: "btn btn-success" %>
-<% end %>
-
-<p><%= pluralize(@event_attendees.count, "person") %> attending</p>
-
-<p><%= link_to "Back", events_path %></p>
-
-<%= link_to 'Edit', edit_event_path(@event) %>
-<%= link_to 'Delete', event_path(@event),
-     method: :delete,
-     data: { confirm: 'Are you sure?' } %>
