@@ -6,11 +6,15 @@ Rails.application.routes.draw do
   post '/users/:id/payments/new' => "payments#new", as: :payment
   post '/users/:id/payments/create' => "payments#create"
 
+  get '/users/:id/reservations' => "reservations#your_reservation", as: :your_reservation
+
   root 'welcome#index'
 
   resources :listings do
-    resources :reservations
+    resources :reservations, only: [:new, :create]
   end
+
+  resources :reservations, only: [:show]
 
   resources :notices
 
