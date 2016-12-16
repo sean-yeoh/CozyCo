@@ -43,6 +43,14 @@
       <div class="panel panel-default">
         <div class="panel-heading"><h4>Forum</h4></div>
           <div class="panel-body">
+            <% if !@topics.blank? %>
+            <% @topics.each do |topic| %>
+            <b><%= topic.name %></b><br>
+            <p><span class="glyphicon glyphicon-comment"></span> <%= topic.comments.count%> comments<p>
+              <%= link_to 'View forum...', topic_path(topic) %><hr>
+              <% end %>
+              <% end %>
+
             <%= link_to 'All Topics', topics_path %>
           </div>
       </div>

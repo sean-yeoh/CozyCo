@@ -2,10 +2,11 @@
 
 
 <%= form_for @topic, :html => {:class => "form-horizontal center"} do |f| %>
+<div class="form-group">
   <%= f.label :name, "Title" %><br>
   <%= f.text_field :name %><br>
-
   <%= f.label :content %><br>
-  <%= f.text_area :content %><br>
-  <%= f.submit %>
+  <%= f.text_area :content, class: "form-control" %><br>
+  <%= f.submit class: "btn btn-primary" %>
+</div>
 <% end %>
