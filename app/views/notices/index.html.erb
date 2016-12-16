@@ -1,7 +1,8 @@
 <div class="jumbotron text-center" id="notice_index">
-  <h1>All Notices</h1><br><br><br><br> 
+  <h1>Notices</h1><br><br><br><br>
 </div><br>
 
+<%= link_to "Create a notice", new_notice_path, class: "btn btn-success btn-block" %><br>
 
 <table class="table table-striped">
     <tr>
@@ -27,4 +28,3 @@
     </table>
 
 <hr>
-<%= link_to 'New Notice', new_notice_path(current_user), class: "btn btn-primary" %>
