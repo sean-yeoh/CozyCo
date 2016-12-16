@@ -1,6 +1,6 @@
 
 <div class="jumbotron text-center" id="listings_index">
-  <h1>Marketplace</h1><br><br><br><br> 
+  <h1>Marketplace</h1><br><br><br><br>
 </div><br>
 
 
@@ -52,9 +52,11 @@
   <div class="col-md-4 col-sm-6 col-xs-6 col-xxs-12 listing-item">
     <%= link_to listing_path(listing) do %>
       <% if listing.listing_type.name == 'Carpark' %>
-        <%= image_tag "carpark.jpg", class: "img-responsive", size: "350x260" %>
+        <%= image_tag "carpark.jpg", class: "img-responsive" %>
       <% elsif listing.listing_type.name == 'Food' %>
-        <%= image_tag "food.jpg", class: "img-responsive", size: "350x260" %>
+        <%= image_tag "food.jpg", class: "img-responsive" %>
+      <% elsif listing.listing_type.name == 'Furniture' %>
+        <%= image_tag "furniture.png", class: "img-responsive" %>
       <% end %>
       <!-- <img src="images/work_1.jpg" alt="Free HTML5 Website Template by FreeHTML5.co" class="img-responsive"> -->
       <h3 class="fh5co-work-title"><%= listing.text %></h3>

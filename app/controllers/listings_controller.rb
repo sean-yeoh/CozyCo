@@ -35,7 +35,6 @@ class ListingsController < ApplicationController
     if price[1].nil?
       @price = listing_params[:price] << ".00"
       @listing = current_user.listings.new(text: listing_params[:text], price: @price, listing_type_id: ListingType.find_by_name(listing_params[:listing_type_id]).id)
-      byebug
       if @listing.save
         redirect_to @listing
       else
