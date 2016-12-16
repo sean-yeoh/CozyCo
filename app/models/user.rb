@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :events
   has_many :listings
   has_many :reservations
+  mount_uploader :photo, PhotoUploader
   # require 'mailboxer'
   # include Mailboxer::Models::Messageable
   extend Mailboxer::Models::Messageable::ActiveRecordExtension
