@@ -1,6 +1,6 @@
 <%= form_for :conversation, url: :conversations, html: { class: "" } do |f| %>
     <div class="form-group">
-      <%= f.label :recipients %>
+      <%= f.label :recipients, "Recipient" %>
       <%= f.select(:recipients, [[@chosen_recipient.email, @chosen_recipient.id]], {}, { multiple: true , class: "form-control" })%> <!-- change p.email to p.name in future -->
     </div>
     <div class="form-group">

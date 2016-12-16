@@ -7,67 +7,59 @@
 
 <div class="row">
   <div class="col-md-12">
-    <span class="text-center"><%= link_to "Create new listing", new_listing_path, class: "btn btn-info"  %></span>
+    <span class="text-center"><%= link_to "Create new listing", new_listing_path, class: "btn btn-success btn-block"  %></span>
   </div>
+</div>
 
-  <div class="col-md-9">
-    <div class="row">
-      <div class="col-md-12">
-        <h2 class="text-center">Search</h2>
-      </div>
+<div class="row">
+  <div class="search">
+    <div class="col-md-12">
+      <h2 class="text-center"><b>Search here</b></h2>
     </div>
 
-    <div class="row">
-      <%= form_tag("/search", method: "get", class: 'form-inline') do %>
-        <div class="col-md-3">
-          <div class="form-group">
-            <%= label_tag :listing_type_id %>
-            <%= select_tag :listing_type_id, options_for_select(@listing_types), class: 'form-control', include_blank: true %>
+    <div class="col-md-12">
+        <%= form_tag("/search", method: "get", class: 'form-inline') do %>
+          <div class="col-md-3">
+            <div class="form-group">
+              <%= label_tag :listing_type_id %>
+              <%= select_tag :listing_type_id, options_for_select(@listing_types), class: 'form-control', include_blank: true %>
+            </div>
           </div>
-        </div>
 
-        <div class="col-md-4">
-          <div class="form-group">
-            <%= label_tag :min_price %>
-            <%= number_field_tag :min_price, class: 'form-control' %>
+          <div class="col-md-3">
+            <div class="form-group">
+              <%= label_tag :min_price %>
+              <%= number_field_tag :min_price, class: 'form-control' %>
+            </div>
           </div>
-        </div>
 
-        <div class="col-md-4">
-          <div class="form-group">
-            <%= label_tag :max_price %>
-            <%= number_field_tag :max_price, class: 'form-control' %>
+          <div class="col-md-3">
+            <div class="form-group">
+              <%= label_tag :max_price %>
+              <%= number_field_tag :max_price, class: 'form-control' %>
+            </div>
           </div>
-        </div>
 
-        <div class="col-md-1">
-          <%= submit_tag "Search", class: "btn btn-info" %>
-        </div>
-      <% end %>
+          <div class="col-md-3">
+            <%= submit_tag "Search", class: "btn btn-info btn-block" %>
+          </div>
+        <% end %>
     </div>
   </div>
 </div>
 
-<table class="table table-bordered table-hover">
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Listing Type</th>
-      <th>Price</th>
-      <th>Seller</th>
-      <th>Action</th>
-    </tr>
-  </thead>
+<% @listings.each do |listing| %>
+  <div class="col-md-4 col-sm-6 col-xs-6 col-xxs-12 listing-item">
+    <%= link_to listing_path(listing) do %>
+      <% if listing.listing_type.name == 'Carpark' %>
+        <%= image_tag "carpark.jpg", class: "img-responsive", size: "350x260" %>
+      <% elsif listing.listing_type.name == 'Food' %>
+        <%= image_tag "food.jpg", class: "img-responsive", size: "350x260" %>
+      <% end %>
+      <!-- <img src="images/work_1.jpg" alt="Free HTML5 Website Template by FreeHTML5.co" class="img-responsive"> -->
+      <h3 class="fh5co-work-title"><%= listing.text %></h3>
 
-  <tbody>
-    <% @listings.each do |listing| %>
-      <tr>
-        <td><%= listing.text %></td>
-        <td><%= listing.listing_type.name %></td>
-        <td><%= listing.price %></td>
-        <td><%= listing.user.name %></td>
-        <td><%= link_to "Buy Now", new_listing_reservation_path(listing) %></td>
-      </tr>
     <% end %>
-  </tbody>
-</table>
+    <p>Category: <%= listing.listing_type.name %> <%= link_to "Buy Now", new_listing_reservation_path(listing), class: 'pull-right btn btn-warning' %></p>
+  </div>
+<% end %>

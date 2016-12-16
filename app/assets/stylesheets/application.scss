@@ -112,3 +112,64 @@ body { padding-top: 70px; }
   width: 300px;
   margin: 0 auto;
 }
+
+.user-index-name {
+  font-size: 20px;
+}
+
+.listing-item {
+  margin-bottom: 50px;
+}
+.listing-item a {
+  border: none;
+  text-align: center;
+}
+.listing-item a img {
+  margin-bottom: 10px;
+  float: left;
+  border: 10px solid transparent;
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+}
+.listing-item a h3 {
+  font-size: 20px;
+  color: #000;
+  margin-bottom: 10px;
+}
+.listing-item a p {
+  font-size: 14px;
+  color: #cccccc;
+  margin-bottom: 0;
+}
+.listing-item a:hover, .listing-item a:active, .listing-item a:focus {
+  text-decoration: none;
+}
+.listing-item a:hover img, .listing-item a:active img, .listing-item a:focus img {
+  border: 10px solid #000;
+}
+
+.search input[type=number] {
+  height: 34px;
+  font-size: 14px;
+  line-height: 1.42857;
+  color: #555555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.search input[type=number]:focus {
+  border-color: #66afe9;
+  outline: 0;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+}
+
+.search {
+  padding-bottom: 120px;
+  border-bottom: 1px solid black;
+}
