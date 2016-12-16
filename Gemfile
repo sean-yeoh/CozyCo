@@ -68,6 +68,7 @@ gem 'braintree', '~> 2.69.0'
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
 
+
 # for image uploading
 gem "mini_magick"
 gem 'fog'

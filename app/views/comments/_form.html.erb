@@ -1,6 +1,8 @@
 
 
 <%= form_for([@topic, @topic.comments.build]) do |f| %>
-  <%= f.text_area :comment, placeholder: "Add comment..." %>
-  <%= f.submit %>
+<div class="form-group">
+  <%= f.text_area :comment, placeholder: "Add comment...", class: "form-control" %>
+</div>
+  <%= f.submit class: "btn btn-primary" %>
 <% end %>
