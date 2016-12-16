@@ -67,3 +67,9 @@ gem 'braintree', '~> 2.69.0'
 # for displaying events on a calendar
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
+
+
+# for image uploading
+gem "mini_magick"
+gem 'fog'
+gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'

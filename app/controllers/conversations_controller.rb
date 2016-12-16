@@ -12,7 +12,7 @@ class ConversationsController < ApplicationController
       flash[:notice] = "Your message was successfully sent!"
       redirect_to conversation_path(conversation)
     else
-      flash[:alert] = "Your message can't be sent"
+      flash[:alert] = "Your message can't be sent."
       render 'new'
     end
   end

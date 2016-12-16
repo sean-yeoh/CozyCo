@@ -22,7 +22,7 @@ class PaymentsController < ApplicationController
 
   def deposit
   	if current_user.credits.empty?
-  		Credit.create(user_id: current_user.id, amount: 0, escrow_amount: 0)
+  		Credit.create(user_id: current_user.id, amount: '0.00', escrow_amount: '0.00')
   	end
   end
 
@@ -54,8 +54,8 @@ class PaymentsController < ApplicationController
   		credit_id = record.id
   		new_credit_amount = (record.amount.to_f + amount.to_f).to_s
   		@deposit = Credit.update(credit_id, amount: new_credit_amount)
-		flash.now[:notice] = "You had deposited RM#{amount}. Your current balance is RM#{@deposit.amount}."
-		render "create"
+		  flash[:notice] = "You had deposited RM#{amount}. Your current balance is RM#{@deposit.amount}."
+      redirect_to user_path(@id)
     else
 		flash.now[:alert] = "There is an error in processing your payment. Please try again."
 		redirect_to payment_path

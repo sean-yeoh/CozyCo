@@ -1,0 +1,14 @@
+<%= @listing.text %>
+<%= @listing.listing_type.name %>
+<%= @listing.price %>
+<%= @listing.user.name %>
+
+<h2>We have taken RM <%= @listing.price %> from your credit account</h2>
+
+<%= form_for [@listing, @reservation] do |f| %>
+  <%= f.label :date %>
+  <%= f.date_field :date %>
+
+  <%=f.submit  %>
+<% end %>
+

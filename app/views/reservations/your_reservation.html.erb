@@ -1,0 +1,5 @@
+<% @reservations.each do |reservation| %>
+  <%= reservation.listing.text %>
+  <%= reservation.id %>
+  <%= link_to 'Payment method', payment_method_path(reservation.id) %>
+<% end %>
