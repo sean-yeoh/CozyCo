@@ -3,7 +3,7 @@
 <%= @listing.price %>
 <%= @listing.user.name %>
 
-<h2>We have taken RM <%= @listing.price %> from your credit account</h2>
+<h2>This will transfer RM <%= @listing.price %> from your credit account as deposit.</h2>
 
 <%= form_for [@listing, @reservation] do |f| %>
   <%= f.label :date %>
