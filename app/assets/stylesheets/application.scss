@@ -51,8 +51,8 @@ body { padding-top: 70px; }
 
 #home2 {
     margin-bottom: 0px;
-    background-image: url(/assets/city3.jpg);
-    background-position: 0% 75%;
+    background-image: url(/assets/city21.jpg);
+    background-position: 0% 65%;
     background-size: cover;
     background-repeat: no-repeat;
     color: black;
@@ -93,6 +93,26 @@ body { padding-top: 70px; }
 #listings_index {
     margin-bottom: 0px;
     background-image: url(/assets/citylong.png);
+    background-position: 0% 75%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: black;
+    text-shadow: white 0.3em 0.3em 0.3em;
+}
+
+#residents_index {
+    margin-bottom: 0px;
+    background-image: url(/assets/citylong.png);
+    background-position: 0% 75%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: black;
+    text-shadow: white 0.3em 0.3em 0.3em;
+}
+
+#new_notice {
+    margin-bottom: 0px;
+    background-image: url(/assets/city-footer.png);
     background-position: 0% 75%;
     background-size: cover;
     background-repeat: no-repeat;
