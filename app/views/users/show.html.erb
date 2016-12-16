@@ -11,10 +11,13 @@
   </div>
   <div class="col-md-12">
     <% if @user.photo.file.nil? %>
-        <%= form_for @user do |f| %>
-          <%= f.file_field :photo %>
-          <%= f.submit "Upload" %>
-        <% end %>
+        <%= image_tag("avatar_placeholder.png", size: '250x250', id: "user-pic", class: 'img-responsive center-block')%>
+          <div class="col-md-12 center-block text-center">
+            <%= form_for @user, :html => {class: 'user-upload-form center-block text-center'} do |f| %>
+              <%= f.file_field :photo %>
+              <%= f.submit "Upload" %>
+            <% end %>
+          </div>
       <% else %>
         <%= image_tag(@user.photo.url.to_s, alt: "#{@user.email}'s Avatar", class: 'img-responsive center-block', id: "user-pic", size: "250x250") %><br>
       <% end %>
