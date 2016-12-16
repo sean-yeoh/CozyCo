@@ -67,4 +67,3 @@ gem 'braintree', '~> 2.69.0'
 # for displaying events on a calendar
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
-
