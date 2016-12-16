@@ -2,10 +2,14 @@
   <% message = receipt.message %>
   <div class="media">
     <div class="media-left">
+      <%= link_to user_path(message.sender) do %>
+        <% if message.sender.photo.file.nil? %>
+          <%= image_tag("avatar_placeholder.png", size: '64x64', class: 'media-object')%>
+        <% else %>
+          <%= image_tag(message.sender.photo.url.to_s, size: "64x64", class: "media-object") %>
+        <% end %>
+      <% end %>
       <!-- user avators can go here -->
-      <a href="#">
-        <img class="media-object" src="http://placehold.it/64x64" alt="...">
-      </a>
     </div>
     <div class="media-body">
       <h4 class="media-heading">
