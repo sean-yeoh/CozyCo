@@ -21,5 +21,19 @@
     <%= f.select(:role, [['Resident', 'resident'], ['Administrator', 'administrator'], ['Super Admin', 'super_admin']]) %>
   </div>
 
+  <div class="form-group">
+    <% if @user.photo.file.nil? %>
+      <b>Add your profile picture now</b>
+      <%= f.file_field :photo %>
+    <% else %>
+      <%= image_tag(@user.photo.url, alt: "#{@user.name}'s Avatar", class: 'img-responsive') %><br>
+      <label>
+        <%= f.check_box :remove_photo %>
+        Remove photo
+      </label>
+    <%= f.file_field :photo, class: 'form-group' %>
+    <% end %>
+  </div>
+
   <p><%= f.submit class: 'btn btn-warning' %></p>
 <% end %>
