@@ -1,8 +1,8 @@
 <% if signed_in? %>
-<div class="jumbotron text-center">
+<div class="jumbotron text-center" id="home2">
   <h1>CozyCo</h1>
   <p>Welcome to CozyCo, <%= current_user.name %></p>
-</div>
+</div><br>
 
 <div class="container">
   <div class="row">
@@ -55,11 +55,18 @@
           </div>
       </div>
     </div>
+  </div>
 
+  </div>
+
+
+
+
+</div>
 
 
 <% else %>
-<div class="jumbotron text-center">
+<div class="jumbotron text-center" id="home1">
   <h1>CozyCo</h1>
 </div>
 <% end %>
