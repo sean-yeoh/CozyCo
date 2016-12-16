@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   has_many :credits
   has_many :events
   has_many :listings
-
+  has_many :reservations
   # require 'mailboxer'
   # include Mailboxer::Models::Messageable
   extend Mailboxer::Models::Messageable::ActiveRecordExtension
