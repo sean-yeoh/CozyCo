@@ -36,10 +36,22 @@ body { padding-top: 70px; }
 
 .inline form { display: inline; }
 
+#home1 {
+
+    background-image: url(/assets/city10.jpg);
+    background-position: 0% 75%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: black;
+    text-shadow: white 0.3em 0.3em 0.3em;
+    padding-top: 20%;
+    padding-bottom: 20%;
+
+}
 
 #home2 {
     margin-bottom: 0px;
-    background-image: url(/assets/city18.jpg);
+    background-image: url(/assets/city3.jpg);
     background-position: 0% 75%;
     background-size: cover;
     background-repeat: no-repeat;
@@ -49,9 +61,9 @@ body { padding-top: 70px; }
 }
 
 #notice_index {
-    margin-bottom: 0px;
-    background-image: url(/assets/city18.jpg);
-    background-position: 0% 75%;
+    margin-bottom: 25px;
+    background-image: url(/assets/citylong.png);
+    background-position: 0% 70%;
     background-size: cover;
     background-repeat: no-repeat;
     color: black;
@@ -60,7 +72,7 @@ body { padding-top: 70px; }
 
 #forum_index {
     margin-bottom: 0px;
-    background-image: url(/assets/city18.jpg);
+    background-image: url(/assets/citylong.png);
     background-position: 0% 75%;
     background-size: cover;
     background-repeat: no-repeat;
@@ -70,7 +82,7 @@ body { padding-top: 70px; }
 
 #events_index {
     margin-bottom: 0px;
-    background-image: url(/assets/city18.jpg);
+    background-image: url(/assets/citylong.png);
     background-position: 0% 75%;
     background-size: cover;
     background-repeat: no-repeat;
@@ -80,7 +92,7 @@ body { padding-top: 70px; }
 
 #listings_index {
     margin-bottom: 0px;
-    background-image: url(/assets/city18.jpg);
+    background-image: url(/assets/citylong.png);
     background-position: 0% 75%;
     background-size: cover;
     background-repeat: no-repeat;
