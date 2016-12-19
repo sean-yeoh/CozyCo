@@ -9,14 +9,14 @@
   <div class="col-md-12">
     <h2><%= @topic.name %></h2>
   </div>
-</div> 
+</div>
 
 <div id="topic_content">
 
   <div id="topic_head">
-    <h5><%= @topic.content %></h5><br>
+    <h5><%= simple_format(@topic.content) %></h5><br>
     <div class="text-primary"><small>
-      <span class="glyphicon glyphicon-comment"></span><%= pluralize(@topic.comments.count, "comment") %><br>
+      <span class="glyphicon glyphicon-comment"></span> <%= pluralize(@topic.comments.count, "comment") %><br>
       Posted by: <%= @topic.user.name %>
       <%= time_ago_in_words(@topic.created_at) %> ago</small>
     </div>
