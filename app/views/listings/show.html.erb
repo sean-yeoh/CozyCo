@@ -1,1 +1,26 @@
-this is your listing
+<div class="row">
+  <div class="col-md-12">
+  <%= link_to 'Back', listings_path, class: 'btn btn-default' %>
+  </div>
+
+  <div class="col-md-12 text-center">
+    <h1><%= @listing.text %></h1> by <%= link_to @listing.user.name, user_path(@listing.user) %>
+    <hr>
+  </div>
+
+  <div class="col-md-12">
+    <p class="text-center">Category: <%= @listing.listing_type.name %></p>
+    <% if @listing.listing_type.name == 'Carpark' %>
+      <%= image_tag "carpark.jpg", class: "img-responsive center-block", size: '450x300' %><br>
+    <% elsif @listing.listing_type.name == 'Food' %>
+      <%= image_tag "food.jpg", class: "img-responsive center-block", size: '450x300' %><br>
+    <% elsif @listing.listing_type.name == 'Furniture' %>
+      <%= image_tag "furniture.png", class: "img-responsive center-block", size: '450x300' %><br>
+    <% end %>
+  </div>
+
+
+  <div class="col-md-offset-4 col-md-4">
+    <p>Price: RM <%= @listing.price %> <%= link_to "Buy Now", new_listing_reservation_path(@listing), class: 'pull-right btn btn-warning' %></p>
+  </div>
+</div>

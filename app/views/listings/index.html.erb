@@ -62,6 +62,16 @@
       <h3 class="fh5co-work-title"><%= listing.text %></h3>
 
     <% end %>
-    <p>Category: <%= listing.listing_type.name %> <%= link_to "Buy Now", new_listing_reservation_path(listing), class: 'pull-right btn btn-warning' %></p>
+
+    <div class="row">
+      <div class="col-md-12">
+        <p>Category: <%= listing.listing_type.name %> <%= link_to "Buy Now", new_listing_reservation_path(listing), class: 'pull-right btn btn-warning' %></p>
+      </div>
+      <div class="col-md-12">
+        <p>
+          Price: RM <%= listing.price %>
+        </p>
+      </div>
+    </div>
   </div>
 <% end %>

@@ -1,14 +1,69 @@
-<%= @listing.text %>
-<%= @listing.listing_type.name %>
-<%= @listing.price %>
-<%= @listing.user.name %>
+<div class="row">
+ <div class="col-md-12">
+    <%= link_to 'Back to marketplace', listings_path, class: 'btn btn-default' %>
+    <%= link_to 'Go to this listing page', listing_path(@listing), class: 'btn btn-primary pull-right' %>
+  </div>
+</div>
 
-<h2>This will transfer RM <%= @listing.price %> from your credit account as deposit.</h2>
+<h2 class="text-center">Please check your reservation before proceeding</h2>
+<div class='row'>
+  <div class="col-md-offset-3 col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading text-center">
+        <b>Details</b>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-2 text-right">
+            <b>Title:</b>
+          </div>
+          <div class="col-md-10">
+            <%= @listing.text %>
+          </div>
+        </div>
 
-<%= form_for [@listing, @reservation] do |f| %>
-  <%= f.label :date %>
-  <%= f.date_field :date %>
+        <div class="row">
+          <div class="col-md-2 text-right">
+            <b>Category:</b>
+          </div>
+          <div class="col-md-10">
+            <%= @listing.listing_type.name %>
+          </div>
+        </div>
 
-  <%=f.submit  %>
-<% end %>
+        <div class="row">
+          <div class="col-md-2 text-right">
+            <b>Price:</b>
+          </div>
+          <div class="col-md-10">
+            <%= @listing.price %>
+          </div>
+        </div>
 
+        <div class="row">
+          <div class="col-md-2 text-right">
+            <b>Seller:</b>
+          </div>
+          <div class="col-md-10">
+            <%= link_to @listing.user.name, user_path(@listing.user) %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12 text-center">
+    <h3>This action will transfer RM <%= @listing.price %> from your credit account as deposit.</h3>
+  </div>
+  <div class="col-md-offset-4 col-md-4">
+    <%= form_for [@listing, @reservation] do |f| %>
+      <div class="form-group">
+      <%= f.label :date %>
+      <%= f.date_field :date, class: 'form-control' %>
+    </div>
+    <%=f.submit class: 'btn btn-success btn-block'  %>
+  <% end %>
+  </div>
+</div>
