@@ -1,6 +1,6 @@
 class ReservationsController < ApplicationController
   def new
-    if current_user.credits.nil?
+    if current_user.credits.blank?
       current_user.credits.new(amount: '0.00', escrow_amount: '0.00')
       flash[:alert] = "You do not have sufficient credits. Please top up before proceeding."
       redirect_to deposit_path(current_user)
