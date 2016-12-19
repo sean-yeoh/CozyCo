@@ -22,7 +22,7 @@
               <li><%= link_to "Marketplace", listings_path %></li>
               <li role="separator" class="divider"></li>
               <li><a href="#">My Purchases</a></li>
-              <li><a href="#">My Sale Commitments</a></li>
+              <li><%= link_to 'My Sale Commitments', your_reservation_path(current_user) %></li>
             </ul>
           </li>
           <li><%= link_to "Residents", users_path %></li>

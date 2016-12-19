@@ -1,5 +1,34 @@
+<div class="row">
+  <div class="col-md-12 text-center">
+    <h1>Your reservations</h1>
+  </div>
+
+
+  <div class="col-md-6 text-left">
+    <h3><b>Listing Title</b></h3>
+  </div>
+
+  <div class="col-md-3 text-center">
+    <h3><b>Reservation ID</b></h3>
+  </div>
+
+  <div class="col-md-3 text-center">
+    <h3><b>Add Payment Method</b></h3>
+  </div>
+</div>
+
 <% @reservations.each do |reservation| %>
-  <%= reservation.listing.text %>
-  <%= reservation.id %>
-  <%= link_to 'Payment method', payment_method_path(reservation.id) %>
+  <div class="row your-reservations">
+    <div class="col-md-6 text-left">
+      <%= link_to reservation.listing.text, listing_path(reservation.listing) %>
+    </div>
+
+    <div class="col-md-3 text-center">
+      <%= link_to reservation.id, reservation_path(reservation) %>
+    </div>
+
+    <div class="col-md-3 text-center">
+      <%= link_to 'Payment method', payment_method_path(reservation.id), class: 'btn btn-warning' %>
+    </div>
+  </div>
 <% end %>

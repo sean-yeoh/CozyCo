@@ -2,7 +2,7 @@ class PaymentsController < ApplicationController
 	  protect_from_forgery with: :null_session
 
   def payment_method
-
+    @reservation = Reservation.find(params[:id])
   end
 
   def decision
