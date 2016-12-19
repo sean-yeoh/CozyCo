@@ -13,7 +13,7 @@
     </div>
     <div class="media-body">
       <h4 class="media-heading">
-        <%= message.sender.email %> <br> <!-- change to message.sender.name in future -->
+        <%= message.sender.name %> <br> <!-- change to message.sender.name in future -->
         <small><b>Subject: </b><%= message.subject %></small><br>
         <small><b>Date: </b><%=  message.created_at.strftime("%A, %b %d, %Y at %I:%M%p") %></small>
       </h4>
