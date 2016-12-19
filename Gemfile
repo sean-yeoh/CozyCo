@@ -73,3 +73,6 @@ gem 'momentjs-rails'
 gem "mini_magick"
 gem 'fog'
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
+
+# for heroku
+gem 'rails_12factor', group: :production
