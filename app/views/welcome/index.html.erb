@@ -1,69 +1,61 @@
 <% if signed_in? %>
-<div class="jumbotron text-center" id="home2">
-  <h1 class="cozyco">CozyCo</h1>
-  <p>Welcome to <span class="cozyco">CozyCo</span>, <%= current_user.name %></p><br><br><br><br><br>
-</div><br>
+  <div class="jumbotron text-center" id="home2">
+    <h1 class="cozyco">CozyCo</h1>
+    <p>Welcome to <span class="cozyco">CozyCo</span>, <%= current_user.name %></p><br><br><br><br><br>
+  </div><br>
 
-<div class="container">
-  <div class="row">
-    <div class="col-sm-4">
-      <div class="panel panel-success">
-        <div class="panel-heading"><h4>Latest Notices</h4></div>
-          <div class="panel-body">
-            <% @notices.each do |notice| %>
-              <b><span class="glyphicon glyphicon-pushpin"></span> <%= notice.title %> </b><br>
-              <p> <%= notice.body %> </p>
-              <%= link_to 'More details...', notice_path(notice) %><hr>
-            <% end %>
-            <%= link_to 'All Notices', notices_path %>
-          </div>
+
+<div class="row">
+  <div class="col-sm-4">
+    <div class="panel panel-success">
+      <div class="panel-heading"><h4>Latest Notices</h4></div>
+        <div class="panel-body">
+          <% @notices.each do |notice| %>
+            <b><span class="glyphicon glyphicon-pushpin"></span> <%= notice.title %> </b><br>
+            <p> <%= notice.body %> </p>
+            <%= link_to 'More details...', notice_path(notice) %><hr>
+          <% end %>
+          <%= link_to 'All Notices', notices_path %>
+        </div>
+    </div>
+</div>
+
+<div class="col-sm-4">
+  <div class="panel panel-info">
+    <div class="panel-heading"><h4>Upcoming Events</h4></div>
+      <div class="panel-body">
+        <% if !@events.blank? %>
+        <% @events.each do |event| %>
+        <b><%= event.title %></b><br>
+        <p><%= event.body %><p>
+        <p> <span class="glyphicon glyphicon-calendar"></span> <%= event.start_date.strftime("%m/%d/%Y")%>
+            <span class="glyphicon glyphicon-user"></span> <%= event.event_attendees.where(attending: true).count %> </p>
+
+              <%= link_to 'More details...', event_path(event) %><hr>
+        <% end %>
+        <% end %>
+        <%= link_to 'All Events', events_path %>
       </div>
   </div>
+</div>
 
-  <div class="col-sm-4">
-    <div class="panel panel-info">
-      <div class="panel-heading"><h4>Upcoming Events</h4></div>
+<div class="col-sm-4">
+    <div class="panel panel-warning">
+      <div class="panel-heading"><h4>Forum</h4></div>
         <div class="panel-body">
-          <% if !@events.blank? %>
-          <% @events.each do |event| %>
-          <b><%= event.title %></b><br>
-          <p><%= event.body %><p>
-          <p> <span class="glyphicon glyphicon-calendar"></span> <%= event.start_date.strftime("%m/%d/%Y")%>
-              <span class="glyphicon glyphicon-user"></span> <%= event.event_attendees.where(attending: true).count %> </p>
+          <% if !@topics.blank? %>
+          <% @topics.each do |topic| %>
+          <b><%= topic.name %></b><br>
+          <p><span class="glyphicon glyphicon-comment"></span> <%= topic.comments.count%> comments<p>
+            <%= link_to 'View forum...', topic_path(topic) %><hr>
+            <% end %>
+            <% end %>
 
-                <%= link_to 'More details...', event_path(event) %><hr>
-          <% end %>
-          <% end %>
-          <%= link_to 'All Events', events_path %>
+          <%= link_to 'All Topics', topics_path %>
         </div>
     </div>
   </div>
-
-  <div class="col-sm-4">
-      <div class="panel panel-warning">
-        <div class="panel-heading"><h4>Forum</h4></div>
-          <div class="panel-body">
-            <% if !@topics.blank? %>
-            <% @topics.each do |topic| %>
-            <b><%= topic.name %></b><br>
-            <p><span class="glyphicon glyphicon-comment"></span> <%= topic.comments.count%> comments<p>
-              <%= link_to 'View forum...', topic_path(topic) %><hr>
-              <% end %>
-              <% end %>
-
-            <%= link_to 'All Topics', topics_path %>
-          </div>
-      </div>
-    </div>
-  </div>
-
-  </div>
-
-
-
-
 </div>
-
 
 <% else %>
 <div class="jumbotron text-center" id="home1">
